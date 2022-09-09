@@ -2,21 +2,23 @@ package main
 
 import (
 	// "github.com/gin-gonic/gin"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/mccune1224/job-tracker/pkg/services/repository"
 	"gorm.io/gorm"
-    _ "github.com/joho/godotenv/autoload"
-    "os"
+	"os"
 )
 
 var (
-    POSTGRESQL_URL = os.Getenv("POSTGRESQL_URL")
+	POSTGRESQL_URL = os.Getenv("POSTGRESQL_URL")
 )
 
 type DBServer struct {
-    db *gorm.DB
+	db *gorm.DB
 }
 
 func main() {
-    DB := repository.LoadDatabase(POSTGRESQL_URL)
-    repository.MigrateDatabase(DB)
+	DB := repository.LoadDatabase(POSTGRESQL_URL)
+	repository.MigrateDatabase(DB)
 }
+
+
